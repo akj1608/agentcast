@@ -73,7 +73,7 @@ npm run cli -- send --slug your-slug --type prompt --content "Add tests"
 
 ## Live demo
 
-**https://agentcast-6mf3.onrender.com** (production until [agentshow.dev](https://agentshow.dev) DNS is configured)
+**https://agentshow.dev** (fallback: https://agentcast-6mf3.onrender.com until DNS propagates)
 
 Demo account: `demo@agentcast.io` / `demo1234`
 

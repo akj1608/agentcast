@@ -3,7 +3,7 @@ set -e
 
 INSTALL_DIR="${AGENTSHOW_INSTALL_DIR:-$HOME/.local/bin}"
 CLI_DIR="$HOME/.agentshow"
-BASE_URL="${AGENTSHOW_URL:-https://agentcast-6mf3.onrender.com}"
+BASE_URL="${AGENTSHOW_URL:-https://agentshow.dev}"
 
 mkdir -p "$INSTALL_DIR" "$CLI_DIR"
 
