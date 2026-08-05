@@ -1,0 +1,4 @@
+#!/bin/sh
+# Strip automated co-author trailers from commit messages.
+sed -i '' '/^Co-authored-by:/d' "$1" 2>/dev/null || \
+  sed -i '/^Co-authored-by:/d' "$1"

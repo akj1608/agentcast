@@ -1,0 +1,139 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  username     String    @unique
+  displayName  String
+  passwordHash String?
+  googleId     String?   @unique
+  bio          String?
+  avatar       String?
+  apiToken     String    @unique @default(cuid())
+  createdAt    DateTime  @default(now())
+  sessions     Session[]
+  chatMessages ChatMessage[]
+  likes        Like[]
+  followers    Follow[]  @relation("following")
+  following    Follow[]  @relation("follower")
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+  follower    User     @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+}
+
+model Session {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  description    String?
+  status         String        @default("live")
+  agent          String
+  model          String?
+  tags           String        @default("")
+  viewCount      Int           @default(0)
+  projectPath    String?
+  machineName    String?
+  isPublic       Boolean       @default(true)
+  allowTalkback  Boolean       @default(true)
+  streamToken    String        @unique @default(cuid())
+  creatorId      String
+  creator        User          @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  startedAt      DateTime      @default(now())
+  endedAt        DateTime?
+  events         SessionEvent[]
+  chatMessages   ChatMessage[]
+  likes          Like[]
+  talkbackQueue  TalkbackMessage[]
+  highlights     Highlight[]
+
+  @@index([status])
+  @@index([startedAt])
+  @@index([creatorId])
+}
+
+model SessionEvent {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sequence  Int
+  type      String
+  content   String
+  metadata  String?
+  timestamp DateTime @default(now())
+
+  @@unique([sessionId, sequence])
+  @@index([sessionId, sequence])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  username  String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId, createdAt])
+}
+
+model TalkbackMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  username  String
+  content   String
+  delivered Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([sessionId, delivered])
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([sessionId, userId])
+}
+
+model Highlight {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  title     String
+  startSeq  Int
+  endSeq    Int
+  createdAt DateTime @default(now())
+}
+
+model CliDeviceCode {
+  id           String   @id @default(cuid())
+  userCode     String   @unique
+  deviceSecret String   @unique
+  userId       String?
+  apiToken     String?
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  @@index([expiresAt])
+}

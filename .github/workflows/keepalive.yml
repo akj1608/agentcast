@@ -1,0 +1,18 @@
+name: Keep Render warm
+
+on:
+  schedule:
+    # Render free tier sleeps after ~15 min idle — ping every 14 min
+    - cron: "*/14 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping AgentCast health endpoint
+        run: |
+          code=$(curl -fsS -o /dev/null -w "%{http_code}" \
+            "https://agentcast-6mf3.onrender.com/api/health" || echo "000")
+          echo "HTTP $code"
+          test "$code" = "200" || exit 1
