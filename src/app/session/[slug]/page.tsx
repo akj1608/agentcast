@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const session = await db.session.findUnique({ where: { slug } });
   if (!session) return { title: "Session not found" };
-  return { title: `${session.title} · Agentshow` };
+  return { title: `${session.title} · AgentCast` };
 }
 
 export default async function SessionPage({ params }: PageProps) {

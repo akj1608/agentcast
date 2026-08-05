@@ -68,7 +68,7 @@ function CliAuthContent() {
         <p className="text-[var(--color-text-muted)] text-sm">
           You can close this tab and return to your terminal.
           <br />
-          Run <code className="text-[var(--color-primary)]">agentshow claude</code> to start streaming.
+          Run <code className="text-[var(--color-primary)]">agentcast claude</code> to start streaming.
         </p>
       </div>
     );
@@ -82,7 +82,7 @@ function CliAuthContent() {
         </div>
         <div>
           <h1 className="text-xl font-bold" style={{ fontFamily: "var(--font-outfit)" }}>
-            Authorize Agentshow CLI
+            Authorize AgentCast CLI
           </h1>
           <p className="text-sm text-[var(--color-text-muted)]">
             Signed in as {user?.displayName}
@@ -91,7 +91,7 @@ function CliAuthContent() {
       </div>
 
       <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-        The CLI on your machine wants to stream sessions to your Agentshow account.
+        The CLI on your machine wants to stream sessions to your AgentCast account.
         This is a one-time sign-in — no tokens to copy.
       </p>
 

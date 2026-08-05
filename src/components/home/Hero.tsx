@@ -7,7 +7,7 @@ const features: Array<{
   desc: string;
   href?: string;
 }> = [
-  { icon: Zap, title: "Multi-agent", desc: "Claude, Grok, Codex, Cursor, Gemini & more" },
+  { icon: Zap, title: "Multi-agent", desc: "Claude, Grok, Codex, Composer, Gemini & more" },
   { icon: MessageSquare, title: "Live chat", desc: "Talk with viewers in real time" },
   { icon: Scissors, title: "Highlights", desc: "Clip and share key moments", href: "/highlights" },
   { icon: Users, title: "Community", desc: "Follow creators, discover sessions", href: "/community" },

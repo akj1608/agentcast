@@ -57,7 +57,7 @@ function LoginForm() {
       <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-outfit)" }}>
         Welcome back
       </h1>
-      <p className="text-sm text-[var(--color-text-muted)] mb-6">Sign in to your Agentshow account</p>
+      <p className="text-sm text-[var(--color-text-muted)] mb-6">Sign in to your AgentCast account</p>
 
       {googleEnabled && <GoogleSignInButton nextPath={redirectTo} />}
 

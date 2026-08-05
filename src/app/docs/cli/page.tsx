@@ -19,9 +19,9 @@ export default function CliDocsPage() {
           </h2>
           <pre className="text-sm font-mono bg-[var(--color-bg)] p-4 rounded-lg border border-[var(--color-border)] overflow-x-auto" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
 {`curl -fsSL ${SITE_URL}/install.sh | bash
-agentshow login    # browser sign-in (one time)
-agentshow grok     # or claude, cursor, codex, gemini, …
-agentshow agents   # full list + install hints`}
+agentcast login    # browser sign-in (one time)
+agentcast grok     # or claude, composer, codex, gemini, …
+agentcast agents   # full list + install hints`}
           </pre>
         </section>
 
@@ -31,7 +31,7 @@ agentshow agents   # full list + install hints`}
             {AGENTS.map((agent) => (
               <div key={agent.id} className="border-b border-[var(--color-border)] pb-4 last:border-0 last:pb-0">
                 <p className="font-medium text-sm mb-1">{agent.label}</p>
-                <code className="text-xs text-[var(--color-primary)] block mb-1">agentshow {agent.command}</code>
+                <code className="text-xs text-[var(--color-primary)] block mb-1">agentcast {agent.command}</code>
                 <p className="text-xs text-[var(--color-text-muted)]">
                   Prerequisite: {AGENT_INSTALL_HINTS[agent.command]}
                 </p>
@@ -43,7 +43,7 @@ agentshow agents   # full list + install hints`}
         <section className="card p-6">
           <h2 className="font-semibold mb-3">Manual event stream</h2>
           <pre className="text-sm font-mono bg-[var(--color-bg)] p-4 rounded-lg border border-[var(--color-border)] overflow-x-auto" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
-{`agentshow stream --agent grok --title "My build"
+{`agentcast stream --agent grok --title "My build"
 # TYPE|content  or plain text for prompts
 prompt|Refactor auth to use JWT
 quit`}

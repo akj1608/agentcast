@@ -1,4 +1,4 @@
-# Deploying Agentshow
+# Deploying AgentCast
 
 ## Option 1: Render (recommended)
 
@@ -10,12 +10,13 @@
 Set these env vars if not auto-generated:
 - `AUTH_SECRET` — random 32+ char string
 - `DATABASE_URL` — `file:/data/dev.db`
+- `NEXT_PUBLIC_APP_URL` — `https://agentcast-6mf3.onrender.com`
 
 ## Option 2: Docker
 
 ```bash
-docker build -t agentshow .
-docker run -p 3000:3000 -e AUTH_SECRET=your-secret -v agentshow-data:/data agentshow
+docker build -t agentcast .
+docker run -p 3000:3000 -e AUTH_SECRET=your-secret -v agentcast-data:/data agentcast
 ```
 
 ## Option 3: VPS / Railway
@@ -31,33 +32,28 @@ Requires Node 20+. Server binds to `0.0.0.0:$PORT` (default 3000).
 
 ## Push to GitHub (clean history)
 
-Run from the `agentshow` directory:
+Run from the `agentcast` directory:
 
 ```bash
 git init
 git add -A
-git commit -m "Initial release of Agentshow platform"
-gh repo create agentshow --public --source=. --push
+git commit -m "Initial release of AgentCast platform"
+gh repo create agentcast --public --source=. --push
 ```
 
 Use your own name/email for git config. Do not use co-authored-by trailers.
 
-## Free domain: agentshow.is-a.dev
+## Production URL
 
-Production URL: **https://agentshow.is-a.dev** (free via [is-a.dev](https://is-a.dev)).
+**https://agentcast-6mf3.onrender.com** — no custom domain required.
 
-1. Domain registration PR: https://github.com/is-a-dev/register/pull/46281  
-   (A record → `216.24.57.1` for Render — merges in minutes to hours)
-2. After merge, in [Render → Custom Domains](https://dashboard.render.com/web/srv-d9o85q0ae00c73audfug), verify `agentshow.is-a.dev`
-3. Add `https://agentshow.is-a.dev/api/auth/google/callback` to Google OAuth redirect URIs
-4. Run: `bash scripts/setup-agentshow-domain.sh`
-
-Until the is-a.dev PR merges, use **https://agentcast-6mf3.onrender.com**.
+Google OAuth redirect URI:
+`https://agentcast-6mf3.onrender.com/api/auth/google/callback`
 
 ## Verify after deploy
 
 ```bash
-AGENTSHOW_URL=https://your-app.onrender.com bash scripts/test-stream.sh
+AGENTCAST_URL=https://agentcast-6mf3.onrender.com bash scripts/test-stream.sh
 ```
 
 ## Demo credentials

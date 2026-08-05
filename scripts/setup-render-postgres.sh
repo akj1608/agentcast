@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wire Render Postgres to the agentshow web service
+# Wire Render Postgres to the agentcast web service
 set -euo pipefail
 
 SERVICE_ID="srv-d9o85q0ae00c73audfug"
@@ -18,7 +18,7 @@ if [[ "$DB_URL" != *"sslmode="* ]]; then
   fi
 fi
 
-echo "Setting DATABASE_URL on agentshow web service..."
+echo "Setting DATABASE_URL on agentcast web service..."
 curl -sf -X PUT \
   -H "Authorization: Bearer $RENDER_KEY" \
   -H "Content-Type: application/json" \

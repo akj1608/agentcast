@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Agentshow CLI — install once, sign in via browser, stream sessions.
- *   curl -fsSL https://agentshow.is-a.dev/install.sh | bash
- *   agentshow claude
+ * AgentCast CLI — install once, sign in via browser, stream sessions.
+ *   curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash
+ *   agentcast claude
  */
 
 import { createInterface } from "readline";
@@ -15,14 +15,13 @@ import { promisify } from "util";
 
 const execAsync = promisify(exec);
 
-const CONFIG_DIR = join(homedir(), ".agentshow");
+const CONFIG_DIR = join(homedir(), ".agentcast");
 const CONFIG_FILE = join(CONFIG_DIR, "config.json");
-const BASE_URL = process.env.AGENTSHOW_URL || "https://agentshow.is-a.dev";
+const BASE_URL = process.env.AGENTCAST_URL || "https://agentcast-6mf3.onrender.com";
 
 const AGENT_ALIASES = {
   claude: "claude-code",
   "claude-code": "claude-code",
-  cursor: "composer",
   composer: "composer",
   grok: "grok",
   codex: "codex",
@@ -45,15 +44,14 @@ const AGENT_PROFILES = {
     end: "Claude Code session ended",
     args: (flags) => (flags._ ? flags._.split(" ").filter(Boolean) : []),
   },
-  cursor: {
+  composer: {
     agent: "composer",
-    label: "Cursor",
-    bin: "cursor",
-    binFlag: "cursor",
-    install: "Cursor → Cmd+Shift+P → Install shell command",
-    start: "Cursor session started",
-    end: "Cursor session ended",
-    aliases: ["composer"],
+    label: "Composer",
+    bin: "composer",
+    binFlag: "composer",
+    install: "Install shell command from your IDE (Cmd+Shift+P)",
+    start: "Composer session started",
+    end: "Composer session ended",
     args: () => [process.cwd()],
   },
   grok: {
@@ -176,14 +174,14 @@ async function openBrowser(url) {
 function getTokenOrNull() {
   const config = loadConfig();
   if (config.apiToken) return config.apiToken;
-  if (process.env.AGENTSHOW_TOKEN) return process.env.AGENTSHOW_TOKEN;
+  if (process.env.AGENTCAST_TOKEN) return process.env.AGENTCAST_TOKEN;
   return null;
 }
 
 function getToken() {
   const token = getTokenOrNull();
   if (!token) {
-    console.error(`Not signed in. Run: agentshow login`);
+    console.error(`Not signed in. Run: agentcast login`);
     process.exit(1);
   }
   return token;
@@ -192,14 +190,14 @@ function getToken() {
 function authHelp() {
   const config = loadConfig();
   const envOverride =
-    process.env.AGENTSHOW_TOKEN && config.apiToken && process.env.AGENTSHOW_TOKEN !== config.apiToken;
+    process.env.AGENTCAST_TOKEN && config.apiToken && process.env.AGENTCAST_TOKEN !== config.apiToken;
   console.error(`
 Unauthorized — session expired or token invalid.
 
-Run: agentshow login
-${envOverride ? "\nStale AGENTSHOW_TOKEN in your shell may be overriding ~/.agentshow/config.json.\nRun: unset AGENTSHOW_TOKEN\n" : ""}
+Run: agentcast login
+${envOverride ? "\nStale AGENTCAST_TOKEN in your shell may be overriding ~/.agentcast/config.json.\nRun: unset AGENTCAST_TOKEN\n" : ""}
 Server:  ${BASE_URL}
-${config.serverUrl && config.serverUrl !== BASE_URL ? `Saved:   ${config.serverUrl} (set AGENTSHOW_URL to match)\n` : ""}Config:  ${CONFIG_FILE}
+${config.serverUrl && config.serverUrl !== BASE_URL ? `Saved:   ${config.serverUrl} (set AGENTCAST_URL to match)\n` : ""}Config:  ${CONFIG_FILE}
 `);
 }
 
@@ -243,7 +241,7 @@ async function loginBrowser() {
   const { userCode, deviceSecret, verifyUrl, expiresIn } = data;
 
   console.log("");
-  console.log("  Sign in to Agentshow in your browser.");
+  console.log("  Sign in to AgentCast in your browser.");
   console.log(`  Code: ${userCode}`);
   console.log("");
   console.log(`  ${verifyUrl}`);
@@ -273,12 +271,12 @@ async function loginBrowser() {
       return;
     }
     if (poll.status === "expired" || poll.status === "invalid") {
-      throw new Error("Login expired. Run agentshow login again.");
+      throw new Error("Login expired. Run agentcast login again.");
     }
     process.stdout.write(".");
   }
 
-  throw new Error("Login timed out. Run agentshow login again.");
+  throw new Error("Login timed out. Run agentcast login again.");
 }
 
 async function ensureLoggedIn() {
@@ -347,7 +345,7 @@ async function stream(args) {
   const config = loadConfig();
   if (config.serverUrl && config.serverUrl !== BASE_URL) {
     console.warn(`Warning: logged in to ${config.serverUrl} but using ${BASE_URL}`);
-    console.warn(`Set: export AGENTSHOW_URL=${config.serverUrl}\n`);
+    console.warn(`Set: export AGENTCAST_URL=${config.serverUrl}\n`);
   }
 
   const title = args.title || `CLI Session ${new Date().toLocaleString()}`;
@@ -508,7 +506,7 @@ async function runAgent(cmdName, flags) {
       bin,
       args,
       label: profile.label,
-      notFoundHint: `Install ${profile.label}: ${profile.install}\nOr: agentshow ${profile.name} --${profile.binFlag} /path/to/binary`,
+      notFoundHint: `Install ${profile.label}: ${profile.install}\nOr: agentcast ${profile.name} --${profile.binFlag} /path/to/binary`,
     },
   });
 }
@@ -516,14 +514,14 @@ async function runAgent(cmdName, flags) {
 function listAgents() {
   console.log("\nSupported agents:\n");
   for (const [name, profile] of Object.entries(AGENT_PROFILES)) {
-    console.log(`  agentshow ${name.padEnd(10)}  ${profile.label}`);
+    console.log(`  agentcast ${name.padEnd(10)}  ${profile.label}`);
     console.log(`    install: ${profile.install}`);
     if (profile.aliases?.length) {
       console.log(`    aliases: ${profile.aliases.join(", ")}`);
     }
     console.log("");
   }
-  console.log("Generic: agentshow stream --agent <name> --title \"My build\"\n");
+  console.log("Generic: agentcast stream --agent <name> --title \"My build\"\n");
 }
 
 async function send(args) {
@@ -594,28 +592,28 @@ switch (command) {
       break;
     }
     console.log(`
-Agentshow CLI  (${BASE_URL})
+AgentCast CLI  (${BASE_URL})
 
 Install (signs you in via browser):
   curl -fsSL ${BASE_URL}/install.sh | bash
 
 Run a session:
-  agentshow claude
-  agentshow cursor
-  agentshow grok
-  agentshow codex
-  agentshow gemini
-  agentshow aider
-  agentshow copilot
-  agentshow windsurf
-  agentshow opencode
+  agentcast claude
+  agentcast composer
+  agentcast grok
+  agentcast codex
+  agentcast gemini
+  agentcast aider
+  agentcast copilot
+  agentcast windsurf
+  agentcast opencode
 
-  agentshow agents          # list all agents + install hints
+  agentcast agents          # list all agents + install hints
 
 Auth:
-  agentshow login           # opens browser — no token needed
-  agentshow whoami
+  agentcast login           # opens browser — no token needed
+  agentcast whoami
 
-Env: AGENTSHOW_URL, AGENTSHOW_TOKEN
+Env: AGENTCAST_URL, AGENTCAST_TOKEN
 `);
 }

@@ -6,7 +6,7 @@ export async function POST() {
 
   const baseUrl =
     process.env.NEXT_PUBLIC_APP_URL ||
-    process.env.AGENTSHOW_URL ||
+    process.env.AGENTCAST_URL ||
     "http://localhost:3000";
 
   return NextResponse.json({

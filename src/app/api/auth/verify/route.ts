@@ -9,6 +9,6 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     user: serializeAuthUser(user),
-    server: process.env.NEXT_PUBLIC_APP_URL || process.env.AGENTSHOW_URL || null,
+    server: process.env.NEXT_PUBLIC_APP_URL || process.env.AGENTCAST_URL || null,
   });
 }

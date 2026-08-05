@@ -46,7 +46,7 @@ export function AgentCommands() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {AGENTS.map((agent) => {
-            const cmd = `agentshow ${agent.command}`;
+            const cmd = `agentcast ${agent.command}`;
             const install = AGENT_INSTALL_HINTS[agent.command];
             return (
               <div key={agent.id} className="card p-5">
@@ -82,7 +82,7 @@ export function AgentCommands() {
 
         <p className="text-center text-sm text-[var(--color-text-muted)] mt-8">
           Generic stream:{" "}
-          <code className="text-[var(--color-primary)]">agentshow stream --agent grok --title &quot;My build&quot;</code>
+          <code className="text-[var(--color-primary)]">agentcast stream --agent grok --title &quot;My build&quot;</code>
         </p>
       </div>
     </section>

@@ -53,6 +53,6 @@ app.prepare().then(() => {
   }, 30000);
 
   server.listen(port, "0.0.0.0", () => {
-    console.log(`> Agentshow ready on http://0.0.0.0:${port}`);
+    console.log(`> AgentCast ready on http://0.0.0.0:${port}`);
   });
 });

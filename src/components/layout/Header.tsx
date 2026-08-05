@@ -43,7 +43,7 @@ export function Header() {
             className="font-semibold text-lg tracking-tight hidden sm:block"
             style={{ fontFamily: "var(--font-outfit)" }}
           >
-            Agentshow
+            AgentCast
           </span>
         </Link>
 

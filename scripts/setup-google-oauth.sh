@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Configure Google OAuth env vars on Render for Agentshow
+# Configure Google OAuth env vars on Render for AgentCast
 set -euo pipefail
 
 SERVICE_ID="srv-d9o85q0ae00c73audfug"
 RENDER_KEY=$(grep '^    key:' "$HOME/.render/cli.yaml" | awk '{print $2}')
-APP_URL="https://agentshow.is-a.dev"
+APP_URL="https://agentcast-6mf3.onrender.com"
 
 if [ -z "${GOOGLE_CLIENT_ID:-}" ] || [ -z "${GOOGLE_CLIENT_SECRET:-}" ]; then
   echo "Usage: GOOGLE_CLIENT_ID=... GOOGLE_CLIENT_SECRET=... bash scripts/setup-google-oauth.sh"

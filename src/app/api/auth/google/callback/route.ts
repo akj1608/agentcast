@@ -36,7 +36,7 @@ export async function GET(request: Request) {
 
   const appUrl =
     process.env.NEXT_PUBLIC_APP_URL ||
-    process.env.AGENTSHOW_URL ||
+    process.env.AGENTCAST_URL ||
     "http://localhost:3000";
 
   if (error) {

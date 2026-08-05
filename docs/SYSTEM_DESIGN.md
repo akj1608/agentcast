@@ -1,4 +1,4 @@
-# Agentshow — System Design Document
+# AgentCast — System Design Document
 
 > **Version:** 1.0  
 > **Date:** August 3, 2026  
@@ -26,7 +26,7 @@
 
 ## 1. Executive Summary
 
-**Agentshow** is a platform for live-streaming, replaying, and sharing AI coding agent sessions. It provides:
+**AgentCast** is a platform for live-streaming, replaying, and sharing AI coding agent sessions. It provides:
 
 - Multi-agent support (Claude Code, Composer, Copilot, Aider, and more)
 - Real-time WebSocket event streaming
@@ -36,7 +36,7 @@
 - CLI tool for terminal-based streaming
 - Open-source with self-hosting support
 
-Unlike traditional **live coding interview platforms** (CoderPad, HackerRank FaceCode) or **browser playgrounds** (LiveCodes, CodePen), Agentshow occupies the category of **AI Agent Observability & Streaming**.
+Unlike traditional **live coding interview platforms** (CoderPad, HackerRank FaceCode) or **browser playgrounds** (LiveCodes, CodePen), AgentCast occupies the category of **AI Agent Observability & Streaming**.
 
 ---
 
@@ -83,7 +83,7 @@ AI coding agents (Claude Code, Composer, Copilot, Aider) are transforming how so
 ├─────────────────────┬─────────────────────┬─────────────────────────────┤
 │  Interview Platforms │  Code Playgrounds    │  AI Agent Streaming (NEW)   │
 ├─────────────────────┼─────────────────────┼─────────────────────────────┤
-│  CoderPad           │  LiveCodes           │  Agentshow                  │
+│  CoderPad           │  LiveCodes           │  AgentCast                  │
 │  HackerRank FaceCode│  CodePen             │  (this project)             │
 │  CodeSignal         │  JSFiddle            │                             │
 │  Coderbyte          │  Replit              │                             │
@@ -93,7 +93,7 @@ AI coding agents (Claude Code, Composer, Copilot, Aider) are transforming how so
 
 ### 3.2 Detailed Feature Matrix
 
-| Feature | Agentshow | CoderPad | LiveCodes | CodeSignal |
+| Feature | AgentCast | CoderPad | LiveCodes | CodeSignal |
 |---------|:---------:|:--------:|:---------:|:----------:|
 | **Primary use case** | AI agent streaming | Technical interviews | Browser playground | Assessments + interviews |
 | **Live AI session feed** | ✅ | ❌ | ❌ | ❌ |
@@ -118,11 +118,11 @@ AI coding agents (Claude Code, Composer, Copilot, Aider) are transforming how so
 |----------|-------------|---------------|---------------|
 | **LiveCodes** | 100% client-side | Browser only | Zero server round-trips |
 | **CoderPad** | Server-side sandboxes | Cloud VMs | Server-mediated |
-| **Agentshow** | CLI + API → ingest → SQLite → WebSocket | Local or cloud | Event streaming + replay |
+| **AgentCast** | CLI + API → ingest → SQLite → WebSocket | Local or cloud | Event streaming + replay |
 
 ### 3.4 Why Not Just Use X?
 
-| Alternative | Why Agentshow is Different |
+| Alternative | Why AgentCast is Different |
 |-------------|---------------------------|
 | **Twitch/YouTube** | No structured event feed, no talk-back to agent, no code-aware timeline |
 | **asciinema** | Terminal replay only, no AI event semantics, no live interaction |
@@ -143,7 +143,7 @@ AI coding agents (Claude Code, Composer, Copilot, Aider) are transforming how so
                                            │ HTTPS / WSS
                                            ▼
 ┌──────────────┐                    ┌──────────────┐
-│  AI Agents   │                    │   Agentshow  │
+│  AI Agents   │                    │   AgentCast  │
 │              │                    │   Platform   │
 │ Claude Code  │──┐                 │              │
 │ Composer     │  │  Events         │  ┌────────┐  │
@@ -172,7 +172,7 @@ AI coding agents (Claude Code, Composer, Copilot, Aider) are transforming how so
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           Agentshow Platform                             │
+│                           AgentCast Platform                             │
 │                                                                          │
 │  ┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌────────────┐  │
 │  │  Next.js    │   │   Ingest    │   │  Real-time  │   │   Auth     │  │
@@ -209,7 +209,7 @@ AI coding agents (Claude Code, Composer, Copilot, Aider) are transforming how so
 │                         Creator's Machine                                │
 │                                                                          │
 │  ┌─────────────┐   ┌─────────────┐   ┌─────────────┐                   │
-│  │ agentshow   │   │   Agent     │   │   Hooks     │                   │
+│  │ agentcast   │   │   Agent     │   │   Hooks     │                   │
 │  │ CLI/Daemon  │──▶│  (Claude,   │◀──│  (pre/post  │                   │
 │  │             │   │   Composer…)  │   │   tool use) │                   │
 │  └─────────────┘   └─────────────┘   └─────────────┘                   │
@@ -284,7 +284,7 @@ Viewer                     Web App                 API                    Event 
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    agentshow daemon                      │
+│                    agentcast daemon                      │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
@@ -300,7 +300,7 @@ Viewer                     Web App                 API                    Event 
 │  │ Talk-back    │  │ Local HTTP   │  │  Config      │  │
 │  │ Receiver     │  │ Server       │  │  Manager     │  │
 │  │              │  │              │  │              │  │
-│  │ - Poll/WS    │  │ - :9473      │  │ - ~/.agentshow│ │
+│  │ - Poll/WS    │  │ - :9473      │  │ - ~/.agentcast│ │
 │  │ - Inject to  │  │ - Browser    │  │ - Project    │  │
 │  │   agent stdin│  │   triggers   │  │   overrides  │  │
 │  └──────────────┘  └──────────────┘  └──────────────┘  │
@@ -744,13 +744,13 @@ Phase 3 (Scale):   Multi-region, Kafka event bus, edge WS (Cloudflare Durable Ob
 ```yaml
 services:
   web:
-    image: agentshow/web:latest
+    image: agentcast/web:latest
     ports: ["3000:3000"]
   ingest:
-    image: agentshow/ingest:latest
+    image: agentcast/ingest:latest
     ports: ["8080:8080"]
   ws:
-    image: agentshow/ws:latest
+    image: agentcast/ws:latest
     ports: ["8081:8081"]
   postgres:
     image: postgres:16
@@ -797,11 +797,11 @@ services:
 
 ## Appendix A: CLI Architecture
 
-The Agentshow CLI (`cli/index.ts`) provides terminal-based event streaming:
+The AgentCast CLI (`cli/index.ts`) provides terminal-based event streaming:
 
 | Command | Description |
 |---------|-------------|
-| `login <email> <password>` | Authenticate and save API token to `~/.agentshow/config.json` |
+| `login <email> <password>` | Authenticate and save API token to `~/.agentcast/config.json` |
 | `stream --title --agent` | Create session and enter interactive event mode |
 | `send --slug --type --content` | Send a single event to an existing session |
 | `poll --slug` | Poll for undelivered talk-back messages |

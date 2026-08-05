@@ -1,6 +1,6 @@
 export const AGENTS = [
   { id: "claude-code", label: "Claude Code", color: "#d97706", command: "claude" },
-  { id: "composer", label: "Cursor", color: "#6366f1", command: "cursor" },
+  { id: "composer", label: "Composer", color: "#6366f1", command: "composer" },
   { id: "grok", label: "Grok Build", color: "#1d9bf0", command: "grok" },
   { id: "codex", label: "Codex", color: "#10a37f", command: "codex" },
   { id: "gemini", label: "Gemini", color: "#4285f4", command: "gemini" },
@@ -14,7 +14,7 @@ export type AgentId = (typeof AGENTS)[number]["id"];
 
 export const AGENT_INSTALL_HINTS: Record<string, string> = {
   claude: "npm install -g @anthropic-ai/claude-code",
-  cursor: "Cursor → Cmd+Shift+P → Install shell command",
+  composer: "Install shell command from your IDE (Cmd+Shift+P)",
   grok: "curl -fsSL https://x.ai/cli/install.sh | bash",
   codex: "npm install -g @openai/codex",
   gemini: "npm install -g @google/gemini-cli",

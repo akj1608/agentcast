@@ -11,13 +11,13 @@ const steps = [
     step: "01",
     title: "Install the CLI",
     command: INSTALL_CMD,
-    desc: "One command installs Agentshow and signs you in via browser — no tokens to copy.",
+    desc: "One command installs AgentCast and signs you in via browser — no tokens to copy.",
   },
   {
     step: "02",
     title: "Run a session",
-    command: "agentshow claude",
-    desc: "Wraps Claude Code and streams your session live. Sign in once with agentshow login if needed.",
+    command: "agentcast claude",
+    desc: "Wraps Claude Code and streams your session live. Sign in once with agentcast login if needed.",
   },
   {
     step: "03",
@@ -53,7 +53,7 @@ export function HowItWorks() {
             Stream your first session
           </h2>
           <p className="text-[var(--color-text-muted)]">
-            Install once, then stream Claude, Cursor, Grok, Codex, Gemini, and more
+            Install once, then stream Claude, Composer, Grok, Codex, Gemini, and more
           </p>
         </div>
 

@@ -22,7 +22,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agentshow — Stream AI Agent Sessions",
+  title: "AgentCast — Stream AI Agent Sessions",
   description:
     "Watch, share, and replay AI coding agent sessions in real time. Multi-agent support, live chat, and session highlights.",
 };

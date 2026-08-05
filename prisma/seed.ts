@@ -37,7 +37,7 @@ async function main() {
         username: "demo",
         displayName: "Demo User",
         passwordHash,
-        bio: "Try Agentshow with this demo account",
+        bio: "Try AgentCast with this demo account",
         avatar: "DU",
       },
     }),

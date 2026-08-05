@@ -73,7 +73,7 @@ export default async function HomePage() {
         sessions={live.filter(Boolean) as NonNullable<typeof live[0]>[]}
         showLive
         viewAllHref="/explore?status=live"
-        emptyMessage="No live sessions right now. Run agentshow claude or agentshow grok to start!"
+        emptyMessage="No live sessions right now. Run agentcast claude or agentcast grok to start!"
       />
       <SessionFeed
         title="Recent sessions"

@@ -143,14 +143,14 @@ export default function DashboardPage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2 rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] p-3">
               <code className="text-xs font-mono flex-1 truncate" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
-                export AGENTSHOW_TOKEN={data.user.apiToken}
+                export AGENTCAST_TOKEN={data.user.apiToken}
               </code>
               <button onClick={copyToken} className="p-1.5 rounded hover:bg-[var(--color-surface-hover)]">
                 {copied ? <Check className="h-4 w-4 text-[var(--color-success)]" /> : <Copy className="h-4 w-4" />}
               </button>
             </div>
             <code className="block text-xs font-mono text-[var(--color-text-muted)] p-3 bg-[var(--color-bg)] rounded-lg border border-[var(--color-border)]" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
-              {`curl -fsSL ${SITE_URL}/install.sh | bash\nagentshow login your@email.com\nagentshow stream --title "My Session" --agent claude`}
+              {`curl -fsSL ${SITE_URL}/install.sh | bash\nagentcast login your@email.com\nagentcast stream --title "My Session" --agent claude`}
             </code>
           </div>
           <Link href="/docs/cli" className="text-sm text-[var(--color-primary)] mt-3 inline-block hover:underline">

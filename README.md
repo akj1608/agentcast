@@ -1,4 +1,4 @@
-# Agentshow
+# AgentCast
 
 A full-stack platform for streaming, replaying, and sharing AI agent coding sessions in real time.
 
@@ -17,7 +17,7 @@ A full-stack platform for streaming, replaying, and sharing AI agent coding sess
 ## Quick Start
 
 ```bash
-cd agentshow
+cd agentcast
 npm install
 npm run db:setup    # Create database + seed demo data
 npm run dev         # Start server on http://localhost:3000
@@ -73,7 +73,7 @@ npm run cli -- send --slug your-slug --type prompt --content "Add tests"
 
 ## Live demo
 
-**https://agentshow.is-a.dev** (free — [PR #46281](https://github.com/is-a-dev/register/pull/46281) pending merge)
+**https://agentcast-6mf3.onrender.com**
 
 Demo account: `demo@agentcast.io` / `demo1234`
 

@@ -15,7 +15,7 @@ export function Footer() {
                 A
               </div>
               <span className="font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
-                Agentshow
+                AgentCast
               </span>
             </div>
             <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
@@ -46,7 +46,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-6 border-t border-[var(--color-border)] text-xs text-[var(--color-text-muted)] space-y-2">
-          <p>© 2026 Agentshow. Open source under MIT license.</p>
+          <p>© 2026 AgentCast. Open source under MIT license.</p>
           <p>
             Created with ❤️ by{" "}
             <a

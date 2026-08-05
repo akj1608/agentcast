@@ -5,10 +5,10 @@ import { db } from "./db";
 import { normalizeAvatarUrl, avatarInitials } from "./avatar";
 
 const SECRET = new TextEncoder().encode(
-  process.env.AUTH_SECRET || "agentshow-dev-secret"
+  process.env.AUTH_SECRET || "agentcast-dev-secret"
 );
 
-const COOKIE_NAME = "agentshow_session";
+const COOKIE_NAME = "agentcast_session";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 export interface AuthUser {
