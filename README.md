@@ -73,7 +73,7 @@ npm run cli -- send --slug your-slug --type prompt --content "Add tests"
 
 ## Live demo
 
-**https://agentcast-6mf3.onrender.com**
+**https://www.agentcast.com**
 
 Demo account: `demo@agentcast.io` / `demo1234`
 

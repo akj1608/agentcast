@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import { SITE_URL } from "@/lib/site";
 import {
   Plus,
   Radio,
@@ -149,7 +150,7 @@ export default function DashboardPage() {
               </button>
             </div>
             <code className="block text-xs font-mono text-[var(--color-text-muted)] p-3 bg-[var(--color-bg)] rounded-lg border border-[var(--color-border)]" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
-              {`curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash\nagentcast login your@email.com\nagentcast stream --title "My Session" --agent claude`}
+              {`curl -fsSL ${SITE_URL}/install.sh | bash\nagentcast login your@email.com\nagentcast stream --title "My Session" --agent claude`}
             </code>
           </div>
           <Link href="/docs/cli" className="text-sm text-[var(--color-primary)] mt-3 inline-block hover:underline">

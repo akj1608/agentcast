@@ -248,7 +248,7 @@ function SessionViewerInner({
     }
   };
 
-  const [shareUrl, setShareUrl] = useState(`https://agentcast-6mf3.onrender.com/session/${session.slug}`);
+  const [shareUrl, setShareUrl] = useState("");
 
   useEffect(() => {
     setShareUrl(window.location.href);

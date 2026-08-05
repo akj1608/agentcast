@@ -14,7 +14,7 @@ services:
           name: agentcast-db
           property: connectionString
       - key: NEXT_PUBLIC_APP_URL
-        value: https://agentcast-6mf3.onrender.com
+        value: https://www.agentcast.com
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: GOOGLE_CLIENT_SECRET

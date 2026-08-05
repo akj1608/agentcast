@@ -3,7 +3,7 @@ set -e
 
 INSTALL_DIR="${AGENTCAST_INSTALL_DIR:-$HOME/.local/bin}"
 CLI_DIR="$HOME/.agentcast"
-BASE_URL="${AGENTCAST_URL:-https://agentcast-6mf3.onrender.com}"
+BASE_URL="${AGENTCAST_URL:-https://www.agentcast.com}"
 
 mkdir -p "$INSTALL_DIR" "$CLI_DIR"
 

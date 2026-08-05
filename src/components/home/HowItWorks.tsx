@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { Copy, Check, Terminal } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
-const INSTALL_CMD = "curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash";
+const INSTALL_CMD = `curl -fsSL ${SITE_URL}/install.sh | bash`;
 
 const steps = [
   {

@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { Copy, Check, Terminal } from "lucide-react";
 import { AGENTS, AGENT_INSTALL_HINTS } from "@/lib/agents";
+import { SITE_URL } from "@/lib/site";
+
+const INSTALL_CMD = `curl -fsSL ${SITE_URL}/install.sh | bash`;
 
 function CopyBtn({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -35,9 +38,9 @@ export function AgentCommands() {
           <div className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] px-4 py-2.5 max-w-full">
             <Terminal className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />
             <code className="text-xs sm:text-sm font-mono text-[var(--color-primary)] truncate" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
-              curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash
+              {INSTALL_CMD}
             </code>
-            <CopyBtn text="curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash" />
+            <CopyBtn text={INSTALL_CMD} />
           </div>
         </div>
 

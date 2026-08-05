@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * AgentCast CLI — install once, sign in via browser, stream sessions.
- *   curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash
+ *   curl -fsSL https://www.agentcast.com/install.sh | bash
  *   agentcast claude
  */
 
@@ -17,7 +17,7 @@ const execAsync = promisify(exec);
 
 const CONFIG_DIR = join(homedir(), ".agentcast");
 const CONFIG_FILE = join(CONFIG_DIR, "config.json");
-const BASE_URL = process.env.AGENTCAST_URL || "https://agentcast-6mf3.onrender.com";
+const BASE_URL = process.env.AGENTCAST_URL || "https://www.agentcast.com";
 
 const AGENT_ALIASES = {
   claude: "claude-code",

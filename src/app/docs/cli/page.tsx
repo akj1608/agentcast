@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, Terminal } from "lucide-react";
 import { AGENTS, AGENT_INSTALL_HINTS } from "@/lib/agents";
+import { SITE_URL } from "@/lib/site";
 
 export default function CliDocsPage() {
   return (
@@ -17,7 +18,7 @@ export default function CliDocsPage() {
             <Terminal className="h-4 w-4 text-[var(--color-primary)]" /> Quick install
           </h2>
           <pre className="text-sm font-mono bg-[var(--color-bg)] p-4 rounded-lg border border-[var(--color-border)] overflow-x-auto" style={{ fontFamily: "var(--font-ibm-plex-mono)" }}>
-{`curl -fsSL https://agentcast-6mf3.onrender.com/install.sh | bash
+{`curl -fsSL ${SITE_URL}/install.sh | bash
 agentcast login    # browser sign-in (one time)
 agentcast grok     # or claude, cursor, codex, gemini, …
 agentcast agents   # full list + install hints`}

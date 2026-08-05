@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CREATOR_NAME, LINKEDIN_URL } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -44,8 +45,19 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-6 border-t border-[var(--color-border)] text-xs text-[var(--color-text-muted)]">
-          © 2026 AgentCast. Open source under MIT license.
+        <div className="mt-8 pt-6 border-t border-[var(--color-border)] text-xs text-[var(--color-text-muted)] space-y-2">
+          <p>© 2026 AgentCast. Open source under MIT license.</p>
+          <p>
+            Created with ❤️ by{" "}
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-text)] hover:underline"
+            >
+              {CREATOR_NAME}
+            </a>
+          </p>
         </div>
       </div>
     </footer>
