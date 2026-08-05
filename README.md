@@ -79,6 +79,6 @@ Demo account: `demo@agentcast.io` / `demo1234`
 
 ## Deploy
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/akj1608/agentcast-app)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/akj1608/agentcast)
 
 See [DEPLOY.md](./DEPLOY.md) for Docker, VPS, and manual setup.
