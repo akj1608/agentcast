@@ -1,7 +1,7 @@
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_APP_URL ||
   process.env.AGENTSHOW_URL ||
-  "https://agentshow.dev"
+  "https://agentshow.is-a.dev"
 ).replace(/\/$/, "");
 
 export const RENDER_URL = "https://agentcast-6mf3.onrender.com";

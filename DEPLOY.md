@@ -42,30 +42,17 @@ gh repo create agentshow --public --source=. --push
 
 Use your own name/email for git config. Do not use co-authored-by trailers.
 
-## Custom domain (agentshow.dev)
+## Free domain: agentshow.is-a.dev
 
-Point `agentshow.dev` at your Render service once you register the domain.
+Production URL: **https://agentshow.is-a.dev** (free via [is-a.dev](https://is-a.dev)).
 
-### Cloudflare DNS
+1. Domain registration PR: https://github.com/is-a-dev/register/pull/46281  
+   (A record → `216.24.57.1` for Render — merges in minutes to hours)
+2. After merge, in [Render → Custom Domains](https://dashboard.render.com/web/srv-d9o85q0ae00c73audfug), verify `agentshow.is-a.dev`
+3. Add `https://agentshow.is-a.dev/api/auth/google/callback` to Google OAuth redirect URIs
+4. Run: `bash scripts/setup-agentshow-domain.sh`
 
-In your Cloudflare dashboard for `agentshow.dev`:
-
-1. Remove any parking/A records pointing elsewhere.
-2. Delete all **AAAA** records (Render is IPv4-only).
-3. Add CNAME records (set **Proxy status** to **DNS only** / grey cloud until SSL is issued):
-
-| Name | Target |
-|------|--------|
-| `@` | `agentcast-6mf3.onrender.com` |
-| `www` | `agentcast-6mf3.onrender.com` |
-
-4. In [Render Dashboard → agentcast → Custom Domains](https://dashboard.render.com/web/srv-d9o85q0ae00c73audfug), add and verify `agentshow.dev` and `www.agentshow.dev`.
-5. After certificates show as valid, you can optionally enable Cloudflare proxy (orange cloud).
-6. Add `https://agentshow.dev/api/auth/google/callback` to your [Google OAuth redirect URIs](https://console.cloud.google.com/apis/credentials).
-
-Set `NEXT_PUBLIC_APP_URL=https://agentshow.dev` on Render (included in `render.yaml`).
-
-Until DNS is live, the app stays available at `https://agentcast-6mf3.onrender.com`.
+Until the is-a.dev PR merges, use **https://agentcast-6mf3.onrender.com**.
 
 ## Verify after deploy
 

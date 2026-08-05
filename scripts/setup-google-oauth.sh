@@ -4,7 +4,7 @@ set -euo pipefail
 
 SERVICE_ID="srv-d9o85q0ae00c73audfug"
 RENDER_KEY=$(grep '^    key:' "$HOME/.render/cli.yaml" | awk '{print $2}')
-APP_URL="https://agentshow.dev"
+APP_URL="https://agentshow.is-a.dev"
 
 if [ -z "${GOOGLE_CLIENT_ID:-}" ] || [ -z "${GOOGLE_CLIENT_SECRET:-}" ]; then
   echo "Usage: GOOGLE_CLIENT_ID=... GOOGLE_CLIENT_SECRET=... bash scripts/setup-google-oauth.sh"

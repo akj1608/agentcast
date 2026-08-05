@@ -3,7 +3,7 @@ set -e
 
 INSTALL_DIR="${AGENTSHOW_INSTALL_DIR:-$HOME/.local/bin}"
 CLI_DIR="$HOME/.agentshow"
-BASE_URL="${AGENTSHOW_URL:-https://agentshow.dev}"
+BASE_URL="${AGENTSHOW_URL:-https://agentshow.is-a.dev}"
 
 mkdir -p "$INSTALL_DIR" "$CLI_DIR"
 

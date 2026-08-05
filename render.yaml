@@ -14,7 +14,7 @@ services:
           name: agentcast-db
           property: connectionString
       - key: NEXT_PUBLIC_APP_URL
-        value: https://agentshow.dev
+        value: https://agentshow.is-a.dev
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: GOOGLE_CLIENT_SECRET

@@ -13,7 +13,7 @@ jobs:
       - name: Ping Agentshow health endpoint
         run: |
           code=$(curl -fsS -o /dev/null -w "%{http_code}" \
-            "https://agentshow.dev/api/health" 2>/dev/null || echo "000")
+            "https://agentshow.is-a.dev/api/health" 2>/dev/null || echo "000")
           if test "$code" != "200"; then
             code=$(curl -fsS -o /dev/null -w "%{http_code}" \
               "https://agentcast-6mf3.onrender.com/api/health" || echo "000")

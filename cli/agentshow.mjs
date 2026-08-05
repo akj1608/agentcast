@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Agentshow CLI — install once, sign in via browser, stream sessions.
- *   curl -fsSL https://agentshow.dev/install.sh | bash
+ *   curl -fsSL https://agentshow.is-a.dev/install.sh | bash
  *   agentshow claude
  */
 
@@ -17,7 +17,7 @@ const execAsync = promisify(exec);
 
 const CONFIG_DIR = join(homedir(), ".agentshow");
 const CONFIG_FILE = join(CONFIG_DIR, "config.json");
-const BASE_URL = process.env.AGENTSHOW_URL || "https://agentshow.dev";
+const BASE_URL = process.env.AGENTSHOW_URL || "https://agentshow.is-a.dev";
 
 const AGENT_ALIASES = {
   claude: "claude-code",
