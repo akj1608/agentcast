@@ -7,7 +7,7 @@ export async function GET() {
     googleEnabled: enabled,
     appUrl:
       process.env.NEXT_PUBLIC_APP_URL ||
-      process.env.AGENTCAST_URL ||
+      process.env.AGENTSHOW_URL ||
       null,
   });
 }

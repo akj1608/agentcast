@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
-BASE="${AGENTCAST_URL:-http://localhost:3000}"
+BASE="${AGENTSHOW_URL:-http://localhost:3000}"
 
-echo "=== AgentCast integration test ==="
+echo "=== Agentshow integration test ==="
 
 echo "1. Login..."
 LOGIN=$(curl -sf -X POST "$BASE/api/auth/login" \

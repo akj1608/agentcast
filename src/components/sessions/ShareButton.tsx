@@ -45,7 +45,7 @@ export function ShareButton({ url, title }: ShareButtonProps) {
   const nativeShare = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({ title, url, text: `Watch "${title}" on AgentCast` });
+        await navigator.share({ title, url, text: `Watch "${title}" on Agentshow` });
         setOpen(false);
         return;
       } catch {

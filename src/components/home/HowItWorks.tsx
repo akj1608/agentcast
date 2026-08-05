@@ -11,18 +11,18 @@ const steps = [
     step: "01",
     title: "Install the CLI",
     command: INSTALL_CMD,
-    desc: "One command installs AgentCast and signs you in via browser — no tokens to copy.",
+    desc: "One command installs Agentshow and signs you in via browser — no tokens to copy.",
   },
   {
     step: "02",
     title: "Run a session",
-    command: "agentcast claude",
-    desc: "Wraps Claude Code and streams your session live. Sign in once with agentcast login if needed.",
+    command: "agentshow claude",
+    desc: "Wraps Claude Code and streams your session live. Sign in once with agentshow login if needed.",
   },
   {
     step: "03",
     title: "Watch it here",
-    command: "agentcast.io/session/your-session",
+    command: `${SITE_URL}/session/your-session`,
     desc: "Your session streams live and lands in your dashboard — share a private link or publish to the feed.",
   },
 ];

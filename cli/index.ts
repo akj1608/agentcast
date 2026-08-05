@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * AgentCast CLI — stream AI agent events to the platform
+ * Agentshow CLI — stream AI agent events to the platform
  */
 
 import * as fs from "fs";
@@ -8,9 +8,9 @@ import * as path from "path";
 import * as os from "os";
 import * as readline from "readline";
 
-const CONFIG_DIR = path.join(os.homedir(), ".agentcast");
+const CONFIG_DIR = path.join(os.homedir(), ".agentshow");
 const CONFIG_FILE = path.join(CONFIG_DIR, "config.json");
-const BASE_URL = process.env.AGENTCAST_URL || "http://localhost:3000";
+const BASE_URL = process.env.AGENTSHOW_URL || "http://localhost:3000";
 
 interface Config {
   apiToken?: string;
@@ -33,7 +33,7 @@ function saveConfig(config: Config) {
 }
 
 function getToken(): string {
-  const envToken = process.env.AGENTCAST_TOKEN;
+  const envToken = process.env.AGENTSHOW_TOKEN;
   if (envToken) return envToken;
   const config = loadConfig();
   if (config.apiToken) return config.apiToken;
@@ -218,7 +218,7 @@ async function main() {
     case "help":
     default:
       console.log(`
-AgentCast CLI
+Agentshow CLI
 
 Commands:
   login <email> <password>              Authenticate and save API token
@@ -226,8 +226,8 @@ Commands:
   send --slug <s> --type <t> --content  Send single event
 
 Environment:
-  AGENTCAST_TOKEN    API token (overrides saved config)
-  AGENTCAST_URL      Server URL (default: http://localhost:3000)
+  AGENTSHOW_TOKEN    API token (overrides saved config)
+  AGENTSHOW_URL      Server URL (default: http://localhost:3000)
 `);
   }
 }

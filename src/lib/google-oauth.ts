@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 
 const SECRET = new TextEncoder().encode(
-  process.env.AUTH_SECRET || "agentcast-dev-secret"
+  process.env.AUTH_SECRET || "agentshow-dev-secret"
 );
 
 export function getGoogleConfig() {
@@ -9,7 +9,7 @@ export function getGoogleConfig() {
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
   const baseUrl =
     process.env.NEXT_PUBLIC_APP_URL ||
-    process.env.AGENTCAST_URL ||
+    process.env.AGENTSHOW_URL ||
     "http://localhost:3000";
 
   return {

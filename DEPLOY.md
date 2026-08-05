@@ -1,4 +1,4 @@
-# Deploying AgentCast
+# Deploying Agentshow
 
 ## Option 1: Render (recommended)
 
@@ -14,8 +14,8 @@ Set these env vars if not auto-generated:
 ## Option 2: Docker
 
 ```bash
-docker build -t agentcast .
-docker run -p 3000:3000 -e AUTH_SECRET=your-secret -v agentcast-data:/data agentcast
+docker build -t agentshow .
+docker run -p 3000:3000 -e AUTH_SECRET=your-secret -v agentshow-data:/data agentshow
 ```
 
 ## Option 3: VPS / Railway
@@ -31,24 +31,24 @@ Requires Node 20+. Server binds to `0.0.0.0:$PORT` (default 3000).
 
 ## Push to GitHub (clean history)
 
-Run from the `agentcast` directory:
+Run from the `agentshow` directory:
 
 ```bash
 git init
 git add -A
-git commit -m "Initial release of AgentCast platform"
-gh repo create agentcast --public --source=. --push
+git commit -m "Initial release of Agentshow platform"
+gh repo create agentshow --public --source=. --push
 ```
 
 Use your own name/email for git config. Do not use co-authored-by trailers.
 
-## Custom domain (www.agentcast.com)
+## Custom domain (agentshow.dev)
 
-Custom domains are configured on Render for `www.agentcast.com` (primary) and `agentcast.com` (redirects to www).
+Point `agentshow.dev` at your Render service once you register the domain.
 
 ### Cloudflare DNS
 
-In your Cloudflare dashboard for `agentcast.com`:
+In your Cloudflare dashboard for `agentshow.dev`:
 
 1. Remove any parking/A records pointing elsewhere.
 2. Delete all **AAAA** records (Render is IPv4-only).
@@ -59,16 +59,18 @@ In your Cloudflare dashboard for `agentcast.com`:
 | `@` | `agentcast-6mf3.onrender.com` |
 | `www` | `agentcast-6mf3.onrender.com` |
 
-4. In [Render Dashboard → agentcast → Custom Domains](https://dashboard.render.com/web/srv-d9o85q0ae00c73audfug), click **Verify** for each domain.
+4. In [Render Dashboard → agentcast → Custom Domains](https://dashboard.render.com/web/srv-d9o85q0ae00c73audfug), add and verify `agentshow.dev` and `www.agentshow.dev`.
 5. After certificates show as valid, you can optionally enable Cloudflare proxy (orange cloud).
-6. Add `https://www.agentcast.com/api/auth/google/callback` to your [Google OAuth redirect URIs](https://console.cloud.google.com/apis/credentials).
+6. Add `https://agentshow.dev/api/auth/google/callback` to your [Google OAuth redirect URIs](https://console.cloud.google.com/apis/credentials).
 
-Set `NEXT_PUBLIC_APP_URL=https://www.agentcast.com` on Render (included in `render.yaml`).
+Set `NEXT_PUBLIC_APP_URL=https://agentshow.dev` on Render (included in `render.yaml`).
+
+Until DNS is live, the app stays available at `https://agentcast-6mf3.onrender.com`.
 
 ## Verify after deploy
 
 ```bash
-AGENTCAST_URL=https://your-app.onrender.com bash scripts/test-stream.sh
+AGENTSHOW_URL=https://your-app.onrender.com bash scripts/test-stream.sh
 ```
 
 ## Demo credentials
